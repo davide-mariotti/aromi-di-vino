@@ -1,14 +1,281 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aromi di Vino</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Enoteca Aromi di Vino | Degustazioni, aperitivi e vini di qualità a Fucecchio</title>
+  <meta name="description"
+    content="Aromi di Vino è un'enoteca moderna a Fucecchio (FI). Acquista vini di qualità, partecipa a degustazioni e incontri con cantine, segui corsi di avvicinamento al vino. Prenota un tavolo su WhatsApp.">
+  <meta name="keywords" content="enoteca Fucecchio, vini qualità, degustazioni vino, aperitivo Fucecchio, Aromi di Vino">
+  <meta name="author" content="Giacomo Carusi – Aromi di Vino">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Enoteca Aromi di Vino | Fucecchio">
+  <meta property="og:description"
+    content="Scopri il mondo del vino a 360 gradi. Acquista bottiglie, degusta e partecipa agli eventi dell'enoteca Aromi di Vino a Fucecchio.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aromidivino.it/">
+  <meta property="og:image" content="img/enoteca-e-degustazioni-a-fucecchio.jpg">
+
+  <!-- Favicon (SVG logo) -->
+  <link rel="icon" href="img/logo/aromi-di-vino-enoteca-a-fucecchio.svg" type="image/svg+xml">
+
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+
+  <!-- ======================================================
+       HEADER
+       ====================================================== -->
+  <header id="main-header" role="banner">
+    <div class="container header-inner">
+
+      <!-- Logo -->
+      <a href="#" class="logo-link" aria-label="Aromi di Vino – torna all'inizio">
+        <img src="img/logo/logo-aromi-di-vino.png" alt="Logo Enoteca Aromi di Vino" width="590" height="589">
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav id="desktop-nav" aria-label="Navigazione principale">
+        <ul class="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#enoteca">L'enoteca</a></li>
+          <li><a href="#enologo">L'enologo</a></li>
+          <li><a href="#contattami">Contattami</a></li>
+          <li>
+            <a href="https://www.instagram.com/aromi_di_vino" target="_blank" rel="noopener noreferrer"
+              class="social-icon" aria-label="Instagram di Aromi di Vino">
+              <img src="img/icons/insta.png" alt="Instagram" width="20" height="20">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/aromidivino" target="_blank" rel="noopener noreferrer"
+              class="social-icon" aria-label="Facebook di Aromi di Vino">
+              <img src="img/icons/face-icon.png" alt="Facebook" width="20" height="20">
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Hamburger (mobile) -->
+      <button id="hamburger-btn" class="hamburger" aria-label="Apri menù" aria-expanded="false"
+        aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Mobile navigation overlay -->
+  <ul id="mobile-menu" class="mobile-menu" role="navigation" aria-label="Navigazione mobile">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#enoteca">L'enoteca</a></li>
+    <li><a href="#enologo">L'enologo</a></li>
+    <li><a href="#contattami">Contattami</a></li>
+    <li>
+      <a href="https://www.instagram.com/aromi_di_vino" target="_blank" rel="noopener noreferrer"
+        class="social-icon" aria-label="Instagram">
+        <img src="img/icons/insta.png" alt="Instagram" width="32" height="32">
+      </a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/aromidivino" target="_blank" rel="noopener noreferrer"
+        class="social-icon" aria-label="Facebook">
+        <img src="img/icons/face-icon.png" alt="Facebook" width="32" height="32">
+      </a>
+    </li>
+  </ul>
+
+  <main id="main-content">
+
+    <!-- ====================================================
+         HERO SECTION
+         ==================================================== -->
+    <section id="hero" aria-label="Sezione principale">
+      <div class="hero-content">
+        <h1>Dalle <strong>migliori cantine</strong> al <strong>tuo calice</strong></h1>
+        <img src="img/riga-chiara.png" alt="" role="presentation" class="hero-divider"
+          width="2000" height="70" loading="eager" fetchpriority="high">
+        <h2>Enoteca e degustazioni a Fucecchio</h2>
+      </div>
+
+      <!-- Scroll-down indicator -->
+      <a href="#enoteca" class="scroll-downs" aria-label="Scorri verso il basso">
+        <div class="mousey">
+          <div class="scroller"></div>
+        </div>
+      </a>
+    </section>
+
+    <!-- ====================================================
+         ENOTECA SECTION
+         ==================================================== -->
+    <section id="enoteca" aria-labelledby="enoteca-heading">
+      <!-- Decorative wave (no alt text needed) -->
+      <img src="img/onda.png" alt="" role="presentation" class="enoteca-wave"
+        width="2000" height="71" loading="lazy">
+
+      <div class="container enoteca-inner">
+        <h2 id="enoteca-heading" class="enoteca-title fade-in"><strong>L'enoteca</strong></h2>
+
+        <!-- Full-width photo -->
+        <img src="img/enoteca-e-degustazioni-a-fucecchio.jpg"
+          alt="Interno dell'enoteca Aromi di Vino a Fucecchio"
+          class="enoteca-photo fade-in"
+          width="2560" height="1500" loading="lazy">
+
+        <!-- Two-column: text + photo -->
+        <div class="enoteca-two-col">
+          <div class="enoteca-text fade-in">
+            <p><b>Aromi di Vino è un'enoteca moderna</b> che vuole farti scoprire <b>il mondo del vino a 360 gradi</b>.
+              Qui è possibile acquistare bottiglie, partecipare a degustazioni mirate e ad incontri con aziende
+              vitivinicole, seguire corsi di avvicinamento al vino e godersi un ottimo aperitivo.</p>
+
+            <p>Il mio intento sarà sempre quello di consigliare <b>il giusto vino per la giusta occasione</b> e
+              raccontare la storia e le scelte vitivinicole ed enologiche che stanno dietro alla bottiglia con cui
+              uscirai dalla mia enoteca. Tra le mie selezioni ci sono vini di facile beva, <b>vini quotidiani</b>, vini
+              da invecchiamento e <b>vini d'annata</b> da bere giovani; vini da meditazione e altri da bere senza
+              pensieri dopo una giornata di lavoro – magari abbinati ai salumi e formaggi di qualità che propongo.</p>
+
+            <p>In più, se tu fossi interessato a creare <b>una tua cantina a casa</b>, sono pronto a guidarti e a
+              suggerirti le scelte migliori per averla più completa possibile.</p>
+          </div>
+
+          <div class="fade-in">
+            <img src="img/enoteca-fucecchio-aromi-di-vino.jpg"
+              alt="Scaffali dell'enoteca Aromi di Vino con vini selezionati"
+              width="2560" height="1600" loading="lazy"
+              style="width:100%; border-radius:4px; object-fit:cover;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         ENOLOGO SECTION
+         ==================================================== -->
+    <section id="enologo" aria-labelledby="enologo-heading">
+      <div class="container">
+        <h2 id="enologo-heading" class="enologo-title fade-in">L'enologo</h2>
+
+        <div class="enologo-two-col">
+          <!-- Photo -->
+          <div class="fade-in">
+            <img src="img/foto-giacomo-carusi-enoteca-fucecchio.jpg"
+              alt="Giacomo Carusi, enologo e proprietario dell'enoteca Aromi di Vino a Fucecchio"
+              class="enologo-photo"
+              width="1500" height="1800" loading="lazy">
+          </div>
+
+          <!-- Bio text -->
+          <div class="enologo-text fade-in">
+            <p>Mi chiamo <b>Giacomo Carusi e sono un enologo</b> laureato all'Università di Pisa in viticoltura ed
+              enologia. Dopo anni di lavoro fuori Fucecchio, ho deciso di tornare a casa ed aprire
+              <b>un'enoteca tutta mia</b>. Qui ho modo di raccontare la bottiglia che propongo partendo dalla
+              barbatella piantata in un campo, passando al vino imbottigliato in azienda, per arrivare infine al
+              calice del consumatore, senza fermarmi alla sola e mera degustazione.</p>
+
+            <p>Ciascun vino che ho scelto di vendere segue i criteri della correttezza: deve essere pulito e senza
+              difetti. Ripongo <b>grande attenzione nello studio complessivo di un'azienda</b>, mi informo sulle scelte
+              fatte, sulle procedure dovute all'annata, alla posizione geografica, all'esposizione. Approfondisco
+              vitigni, zone enologiche e sistemi di vinificazione particolari, perché <b>ogni vino è un vero
+                viaggio</b> che voglio condividere sia col principiante che con l'esperto di settore.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         CONTATTAMI / CTA SECTION
+         ==================================================== -->
+    <section id="contattami" aria-labelledby="contattami-heading">
+      <!-- Decorative wave -->
+      <img src="img/onda.png" alt="" role="presentation" class="contattami-wave"
+        width="2000" height="71" loading="lazy">
+
+      <div class="container contattami-inner">
+        <h2 id="contattami-heading" class="contattami-title fade-in">
+          Degusta <strong>i miei vini</strong>
+        </h2>
+
+        <a id="prenota-tavolo-btn"
+          href="https://wa.me/+393393360128"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-cta fade-in"
+          aria-label="Prenota un tavolo su WhatsApp">
+          PRENOTA UN TAVOLO
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       FOOTER
+       ====================================================== -->
+  <footer id="main-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+
+        <!-- Logo -->
+        <div class="footer-logo fade-in">
+          <a href="#" aria-label="Aromi di Vino – torna all'inizio">
+            <img src="img/logo/aromi-di-vino-enoteca-a-fucecchio.svg"
+              alt="Logo testuale Aromi di Vino – Enoteca a Fucecchio"
+              width="752" height="202" loading="lazy">
+          </a>
+        </div>
+
+        <!-- Address, phone, social -->
+        <div class="footer-info fade-in">
+          <p>Via Roma, 17<br>50054 Fucecchio FI</p>
+          <p>Tel: <strong><a href="tel:+393393360128" aria-label="Chiama il numero 339 336 0128">+39 339 336
+                0128</a></strong></p>
+
+          <div class="footer-social">
+            <a href="https://www.instagram.com/aromi_di_vino" target="_blank" rel="noopener noreferrer"
+              aria-label="Seguici su Instagram">
+              <img src="img/icons/insta.png" alt="Instagram" width="50" height="50" loading="lazy">
+            </a>
+            <a href="https://www.facebook.com/aromidivino" target="_blank" rel="noopener noreferrer"
+              aria-label="Seguici su Facebook">
+              <img src="img/icons/face-icon.png" alt="Facebook" width="50" height="50" loading="lazy">
+            </a>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div class="footer-hours fade-in">
+          <h4>Orario</h4>
+          <p><strong>Dal Martedì al Sabato</strong><br>10:00 – 13:00 | 16:00 – 20:30</p>
+          <p><strong>Domenica e Lunedì</strong><br>Chiuso</p>
+        </div>
+
+      </div><!-- /.footer-top -->
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <p>© Aromi di Vino 2023</p>
+        <p>Design by <a href="https://www.biro.agency" target="_blank" rel="noopener noreferrer">BIRO</a>
+          – Reimplementazione HTML/CSS/JS</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="js/main.js" defer></script>
 
 </body>
 

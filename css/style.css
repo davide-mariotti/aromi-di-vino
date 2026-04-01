@@ -1,1 +1,574 @@
-/* style.css */
+/* ============================================================
+   Aromi di Vino — style.css
+   Mobile-first, no framework
+   ============================================================ */
+
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+/* ---------- Custom properties (design tokens) ---------- */
+:root {
+  --color-cream:      #f5e0cc;
+  --color-wine:       #941347;
+  --color-dark:       #3d3a41;
+  --color-bg-hero:    rgba(0, 0, 0, 0.55);
+  --color-bg-enoteca: #f5e0cc;
+  --color-bg-enologo: #ffffff;
+  --color-bg-contact: #f5e0cc;
+  --color-bg-footer:  #3d3a41;
+
+  --font-main:   'Questrial', Helvetica, Arial, Lucida, sans-serif;
+  --max-width:   1280px;
+  --nav-height:  80px;
+
+  --transition:  0.3s ease;
+}
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--color-dark);
+  line-height: 1.6;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a {
+  color: var(--color-wine);
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+a:hover { opacity: 0.8; }
+
+/* ---------- Container ---------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* ============================================================
+   HEADER / NAVBAR
+   ============================================================ */
+#main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+#main-header.scrolled {
+  background: rgba(61, 58, 65, 0.96);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+}
+
+/* Logo */
+.logo-link img {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  /* invert white logo on transparent bg – looks great on dark overlay */
+  filter: brightness(0) invert(1);
+  transition: filter var(--transition);
+}
+#main-header.scrolled .logo-link img { filter: brightness(0) invert(1); }
+
+/* Desktop nav */
+.nav-links {
+  display: none;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--color-cream);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--color-wine); }
+
+/* Social icons in nav */
+.nav-links .social-icon img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  transition: filter var(--transition);
+  vertical-align: middle;
+}
+.nav-links .social-icon:hover img { filter: brightness(0) invert(0) sepia(1) hue-rotate(300deg) saturate(3); }
+
+/* Hamburger */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  align-items: center;
+  justify-content: center;
+}
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--color-cream);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(61, 58, 65, 0.97);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.mobile-menu a {
+  color: var(--color-cream);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.mobile-menu a:hover { color: var(--color-wine); }
+
+/* Mobile social */
+.mobile-menu .social-icon img {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1);
+}
+
+/* ---------- Tablet: show desktop nav ---------- */
+@media (min-width: 768px) {
+  .nav-links { display: flex; }
+  .hamburger { display: none; }
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+#hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../img/enoteca-e-degustazioni-a-fucecchio.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* parallax feel */
+}
+
+/* Dark overlay */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem 1.25rem;
+  max-width: 800px;
+}
+
+.hero-content h1 {
+  font-weight: 300;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--color-cream);
+  letter-spacing: 1px;
+  line-height: 1.2;
+  text-shadow: 0.08em 0.08em 0.08em rgba(0,0,0,0.4);
+  margin-bottom: 0.5rem;
+}
+.hero-content h1 strong { font-weight: 700; }
+
+.hero-divider {
+  width: 100%;
+  max-width: 500px;
+  margin: 0.4rem auto;
+  opacity: 0.8;
+}
+
+.hero-content h2 {
+  font-weight: 300;
+  font-size: clamp(1.1rem, 3vw, 1.75rem);
+  color: var(--color-cream);
+  text-align: center;
+  margin-top: 0;
+}
+
+/* Scroll-down mouse animation */
+.scroll-downs {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.mousey {
+  width: 3px;
+  padding: 10px 15px;
+  height: 35px;
+  border: 3px solid #fff;
+  border-radius: 25px;
+  opacity: 0.75;
+  box-sizing: content-box;
+}
+
+.scroller {
+  width: 3px;
+  height: 10px;
+  border-radius: 25%;
+  background-color: #fff;
+  animation: scroll-anim 2.2s cubic-bezier(.15,.41,.69,.94) infinite;
+}
+
+@keyframes scroll-anim {
+  0%   { opacity: 0; }
+  10%  { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0; }
+}
+
+/* Mobile: disable fixed bg (perf + iOS compat) */
+@media (max-width: 767px) {
+  #hero { background-attachment: scroll; }
+}
+
+/* ============================================================
+   SECTION COMMON
+   ============================================================ */
+.section {
+  padding: 4rem 0;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 1.5rem;
+}
+
+.wave-divider {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/* ============================================================
+   ENOTECA SECTION
+   ============================================================ */
+#enoteca {
+  background-color: var(--color-bg-enoteca);
+  padding-top: 0; /* wave sits at top */
+}
+
+.enoteca-wave { display: block; width: 100%; }
+
+.enoteca-inner {
+  padding: 2rem 0 3rem;
+}
+
+.enoteca-title {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 1.5rem;
+}
+
+.enoteca-photo {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  object-fit: cover;
+  max-height: 480px;
+}
+
+/* Two-column layout on tablet+ */
+.enoteca-two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .enoteca-two-col {
+    grid-template-columns: 2fr 3fr;
+    gap: 3rem;
+  }
+  .enoteca-photo { margin-bottom: 0; max-height: none; }
+}
+
+.enoteca-text p {
+  text-align: justify;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+.enoteca-text p:last-child { margin-bottom: 0; }
+
+/* ============================================================
+   ENOLOGO SECTION
+   ============================================================ */
+#enologo {
+  background-color: var(--color-bg-enologo);
+  padding: 3rem 0 4rem;
+}
+
+.enologo-title {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 2rem;
+}
+
+.enologo-two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .enologo-two-col {
+    grid-template-columns: 2fr 3fr;
+    gap: 3rem;
+    align-items: center;
+  }
+}
+
+.enologo-photo {
+  width: 100%;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.enologo-text p {
+  text-align: justify;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+.enologo-text p:last-child { margin-bottom: 0; }
+
+/* ============================================================
+   CONTATTAMI / CTA SECTION
+   ============================================================ */
+#contattami {
+  background-color: var(--color-bg-contact);
+  padding-top: 0;
+}
+
+.contattami-wave { display: block; width: 100%; }
+
+.contattami-inner {
+  padding: 2rem 0 3rem;
+  text-align: center;
+}
+
+.contattami-title {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 300;
+  color: var(--color-dark);
+  margin-bottom: 2rem;
+}
+.contattami-title strong { font-weight: 700; }
+
+/* CTA Button */
+.btn-cta {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  border: 2px solid var(--color-dark);
+  color: var(--color-dark);
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+.btn-cta:hover {
+  background: var(--color-dark);
+  color: var(--color-cream);
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+#main-footer {
+  background-color: var(--color-bg-footer);
+  color: var(--color-cream);
+  padding: 3rem 0 0;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .footer-top { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .footer-top { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Footer logo */
+.footer-logo img {
+  max-width: 220px;
+  width: 100%;
+  /* SVG is dark, invert for dark footer */
+  filter: brightness(0) invert(1);
+}
+
+/* Footer info */
+.footer-info h4,
+.footer-hours h4 {
+  color: var(--color-cream);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.footer-info p,
+.footer-hours p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+  color: rgba(245, 224, 204, 0.85);
+}
+
+.footer-info a {
+  color: var(--color-cream);
+  transition: color var(--transition);
+}
+.footer-info a:hover { color: #fff; opacity: 1; }
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.footer-social a img {
+  width: 36px;
+  height: 36px;
+  transition: transform var(--transition), filter var(--transition);
+  filter: brightness(0) invert(1);
+}
+.footer-social a:hover img {
+  transform: scale(1.15);
+  filter: brightness(0) invert(1) sepia(0.3);
+}
+
+/* Footer hours */
+.footer-hours strong { color: var(--color-cream); }
+
+/* Footer bottom bar */
+.footer-bottom {
+  border-top: 1px solid rgba(245, 224, 204, 0.2);
+  padding: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer-bottom p {
+  font-size: 0.8rem;
+  color: rgba(245, 224, 204, 0.6);
+}
+
+.footer-bottom a {
+  color: rgba(245, 224, 204, 0.6);
+  transition: color var(--transition);
+}
+.footer-bottom a:hover { color: var(--color-cream); opacity: 1; }
+
+/* ============================================================
+   ANIMATIONS (intersection observer)
+   ============================================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger for children */
+.fade-in:nth-child(2) { transition-delay: 0.15s; }
+.fade-in:nth-child(3) { transition-delay: 0.3s; }
