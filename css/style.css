@@ -3,8 +3,24 @@
    Mobile-first, vanilla CSS
    ============================================================ */
 
-/* ---------- Google Fonts ---------- */
+/* @import deve essere la prima dichiarazione del foglio */
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+/* ---------- Custom scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f5e0cc;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #931346;
+  border-radius: 4px;
+  border: 2px solid #f5e0cc;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #7a0e38;
+}
 
 /* ---------- Custom properties (design tokens) ---------- */
 :root {
@@ -22,6 +38,10 @@
   --nav-height:  80px;
 
   --transition:  0.3s ease;
+
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #931346 #f5e0cc;
 }
 
 /* ---------- Reset & base ---------- */
@@ -235,11 +255,19 @@ a:hover { opacity: 0.8; }
 }
 .hero-content h1 strong { font-weight: 700; }
 
+/* ---- hero-divider: stretta e centrata, coerente con le wave ---- */
 .hero-divider {
-  width: 100%;
-  max-width: 500px;
-  margin: 0.4rem auto;
-  opacity: 0.8;
+  width: 60%;
+  max-width: 320px;
+  margin: 0.6rem auto;
+  opacity: 0.75;
+}
+
+/* h1 più grande su mobile */
+@media (max-width: 767px) {
+  .hero-content h1 {
+    font-size: clamp(2.4rem, 9vw, 3.2rem);
+  }
 }
 
 .hero-content h2 {
@@ -316,13 +344,19 @@ a:hover { opacity: 0.8; }
   padding-top: 0; /* wave sits at top */
 }
 
-/* Gap tra hero e la wave: la wave viene riempita verso l'alto,
-   quindi aggiungiamo un margine negativo per avvicinarla al bordo
-   ma con un piccolo spazio visivo sopra */
-.enoteca-wave {
+/* Wave decorativa: stretta e centrata, stessa logica del hero-divider */
+.enoteca-wave,
+.contattami-wave {
   display: block;
-  width: 100%;
-  margin-top: 2rem; /* respiro tra la fine dell'hero e la wave */
+  width: 60%;
+  max-width: 320px;
+  margin-inline: auto;
+}
+
+/* Gap specifici per ogni sezione */
+.enoteca-wave {
+  margin-top: 3rem;
+  margin-bottom: 0;
 }
 
 .enoteca-inner {
@@ -337,12 +371,14 @@ a:hover { opacity: 0.8; }
   text-align: center;
 }
 
+/* enoteca-photo: solo mobile, nascosta su desktop */
 .enoteca-photo {
+  display: block;
   width: 100%;
   border-radius: 4px;
   margin-bottom: 2rem;
   object-fit: cover;
-  max-height: 480px;
+  max-height: 420px;
 }
 
 /* Two-column layout on tablet+ */
@@ -354,11 +390,11 @@ a:hover { opacity: 0.8; }
 }
 
 @media (min-width: 768px) {
+  .enoteca-photo { display: none; }
   .enoteca-two-col {
     grid-template-columns: 2fr 3fr;
     gap: 3rem;
   }
-  .enoteca-photo { margin-bottom: 0; max-height: none; }
 }
 
 .enoteca-text p {
@@ -439,11 +475,10 @@ a:hover { opacity: 0.8; }
 
 /* La wave e il contenuto devono stare sopra l'overlay */
 .contattami-wave {
-  display: block;
-  width: 100%;
   position: relative;
   z-index: 1;
-  margin-top: 2rem;
+  margin-top: 3.5rem; /* padding visivo sopra la wave nella sezione contatti */
+  margin-bottom: 0;
 }
 
 .contattami-inner {
