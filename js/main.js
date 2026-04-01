@@ -1,10 +1,14 @@
 /**
  * main.js — Aromi di Vino
- * Handles: sticky header, mobile menu, active nav link, fade-in animations
+ * Handles: sticky header, mobile menu, active nav link, fade-in animations, dynamic year
  */
 
 (function () {
   'use strict';
+
+  /* ---- Anno dinamico nel footer ---- */
+  var yearEl = document.getElementById('footer-year');
+  if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
 
   /* ---- Sticky header ---- */
   const header = document.getElementById('main-header');

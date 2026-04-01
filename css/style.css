@@ -12,8 +12,8 @@
   --color-wine:       #941347;
   --color-dark:       #3d3a41;
   --color-bg-hero:    rgba(0, 0, 0, 0.55);
-  --color-bg-enoteca: #f5e0cc;
-  --color-bg-enologo: #ffffff;
+  --color-bg-enoteca: #ffffff;
+  --color-bg-enologo: #f5e0cc;
   --color-bg-contact: #f5e0cc;
   --color-bg-footer:  #3d3a41;
 
@@ -296,10 +296,11 @@ a:hover { opacity: 0.8; }
 }
 
 .section-title {
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
   font-weight: 700;
   color: var(--color-dark);
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .wave-divider {
@@ -329,10 +330,11 @@ a:hover { opacity: 0.8; }
 }
 
 .enoteca-title {
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
   font-weight: 700;
   color: var(--color-dark);
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .enoteca-photo {
@@ -376,10 +378,11 @@ a:hover { opacity: 0.8; }
 }
 
 .enologo-title {
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
   font-weight: 700;
   color: var(--color-dark);
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .enologo-two-col {
@@ -424,12 +427,12 @@ a:hover { opacity: 0.8; }
   background-attachment: fixed;
 }
 
-/* Overlay semi-trasparente caldo sopra l'immagine */
+/* Overlay leggerissimo — lascia respirare la foto */
 #contattami::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(245, 224, 204, 0.82);
+  background: rgba(0, 0, 0, 0.18);
   pointer-events: none;
   z-index: 0;
 }
@@ -454,11 +457,14 @@ a:hover { opacity: 0.8; }
   #contattami { background-attachment: scroll; }
 }
 
+/* Testo bianco su sfondo scuro */
 .contattami-title {
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
   font-weight: 300;
-  color: var(--color-dark);
+  color: #fff;
   margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 .contattami-title strong { font-weight: 700; }
 
@@ -466,9 +472,9 @@ a:hover { opacity: 0.8; }
 .btn-cta {
   display: inline-block;
   padding: 1rem 2.5rem;
-  background: transparent;
-  border: 2px solid var(--color-dark);
-  color: var(--color-dark);
+  background: #931346;
+  border: 2px solid #931346;
+  color: #fff;
   font-family: var(--font-main);
   font-size: 0.85rem;
   font-weight: 700;
@@ -477,12 +483,13 @@ a:hover { opacity: 0.8; }
   text-decoration: none;
   border-radius: 2px;
   cursor: pointer;
-  transition: background var(--transition), color var(--transition), transform var(--transition);
+  transition: background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 .btn-cta:hover {
-  background: var(--color-dark);
-  color: var(--color-cream);
+  background: #7a0e38;
+  border-color: #7a0e38;
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(147, 19, 70, 0.4);
   opacity: 1;
 }
 
