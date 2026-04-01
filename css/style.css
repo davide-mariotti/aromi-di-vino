@@ -82,16 +82,15 @@ a:hover { opacity: 0.8; }
   height: var(--nav-height);
 }
 
-/* Logo */
+/* Logo — mostriamo il logo originale a colori su tutti gli sfondi;
+   l'overlay scuro dell'hero garantisce già un buon contrasto */
 .logo-link img {
   height: 56px;
   width: auto;
   object-fit: contain;
-  /* invert white logo on transparent bg – looks great on dark overlay */
-  filter: brightness(0) invert(1);
-  transition: filter var(--transition);
+  transition: opacity var(--transition);
 }
-#main-header.scrolled .logo-link img { filter: brightness(0) invert(1); }
+.logo-link:hover img { opacity: 0.85; }
 
 /* Desktop nav */
 .nav-links {
@@ -316,10 +315,17 @@ a:hover { opacity: 0.8; }
   padding-top: 0; /* wave sits at top */
 }
 
-.enoteca-wave { display: block; width: 100%; }
+/* Gap tra hero e la wave: la wave viene riempita verso l'alto,
+   quindi aggiungiamo un margine negativo per avvicinarla al bordo
+   ma con un piccolo spazio visivo sopra */
+.enoteca-wave {
+  display: block;
+  width: 100%;
+  margin-top: 2rem; /* respiro tra la fine dell'hero e la wave */
+}
 
 .enoteca-inner {
-  padding: 2rem 0 3rem;
+  padding: 2rem 1.25rem 4rem; /* padding laterale incluso su mobile */
 }
 
 .enoteca-title {
@@ -366,7 +372,7 @@ a:hover { opacity: 0.8; }
    ============================================================ */
 #enologo {
   background-color: var(--color-bg-enologo);
-  padding: 3rem 0 4rem;
+  padding: 3.5rem 0 4.5rem;
 }
 
 .enologo-title {
@@ -409,15 +415,43 @@ a:hover { opacity: 0.8; }
    CONTATTAMI / CTA SECTION
    ============================================================ */
 #contattami {
-  background-color: var(--color-bg-contact);
+  position: relative;
   padding-top: 0;
+  /* Background image con overlay scuro come l'hero */
+  background-image: url('../img/bg-ambient.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.contattami-wave { display: block; width: 100%; }
+/* Overlay semi-trasparente caldo sopra l'immagine */
+#contattami::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 224, 204, 0.82);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* La wave e il contenuto devono stare sopra l'overlay */
+.contattami-wave {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-top: 2rem;
+}
 
 .contattami-inner {
-  padding: 2rem 0 3rem;
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1.25rem 4rem;
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  #contattami { background-attachment: scroll; }
 }
 
 .contattami-title {
@@ -466,10 +500,15 @@ a:hover { opacity: 0.8; }
   grid-template-columns: 1fr;
   gap: 2.5rem;
   padding-bottom: 2.5rem;
+  /* Centro tutto su mobile */
+  text-align: center;
 }
 
 @media (min-width: 640px) {
-  .footer-top { grid-template-columns: repeat(2, 1fr); }
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+    text-align: left;
+  }
 }
 
 @media (min-width: 900px) {
@@ -480,8 +519,14 @@ a:hover { opacity: 0.8; }
 .footer-logo img {
   max-width: 220px;
   width: 100%;
-  /* SVG is dark, invert for dark footer */
+  /* SVG è scuro: lo invertiamo per il footer scuro */
   filter: brightness(0) invert(1);
+  /* Centro su mobile, allinea a sinistra su desktop */
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .footer-logo img { margin-inline: 0; }
 }
 
 /* Footer info */
@@ -512,6 +557,11 @@ a:hover { opacity: 0.8; }
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+  justify-content: center; /* Centro su mobile */
+}
+
+@media (min-width: 640px) {
+  .footer-social { justify-content: flex-start; }
 }
 .footer-social a img {
   width: 36px;
