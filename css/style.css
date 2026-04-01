@@ -10,42 +10,51 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #f5e0cc;
+  background: #3d3a41;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: #931346;
   border-radius: 4px;
-  border: 2px solid #f5e0cc;
+  border: 2px solid #3d3a41;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background-color: #7a0e38;
 }
 
 /* ---------- Custom properties (design tokens) ---------- */
 :root {
-  --color-cream:      #f5e0cc;
-  --color-wine:       #941347;
-  --color-dark:       #3d3a41;
-  --color-bg-hero:    rgba(0, 0, 0, 0.55);
+  --color-cream: #f5e0cc;
+  --color-wine: #941347;
+  --color-dark: #3d3a41;
+  --color-bg-hero: rgba(0, 0, 0, 0.55);
   --color-bg-enoteca: #ffffff;
   --color-bg-enologo: #f5e0cc;
   --color-bg-contact: #f5e0cc;
-  --color-bg-footer:  #3d3a41;
+  --color-bg-footer: #3d3a41;
 
-  --font-main:   'Questrial', Helvetica, Arial, Lucida, sans-serif;
-  --max-width:   1280px;
-  --nav-height:  80px;
+  --font-main: 'Questrial', Helvetica, Arial, Lucida, sans-serif;
+  --max-width: 1280px;
+  --nav-height: 80px;
 
-  --transition:  0.3s ease;
+  --transition: 0.3s ease;
 
   /* Firefox scrollbar */
   scrollbar-width: thin;
-  scrollbar-color: #931346 #f5e0cc;
+  scrollbar-color: #931346 #3d3a41;
 }
 
 /* ---------- Reset & base ---------- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html {
   scroll-behavior: smooth;
@@ -60,14 +69,21 @@ body {
   overflow-x: hidden;
 }
 
-img { max-width: 100%; height: auto; display: block; }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
 a {
   color: var(--color-wine);
   text-decoration: none;
   transition: opacity var(--transition);
 }
-a:hover { opacity: 0.8; }
+
+a:hover {
+  opacity: 0.8;
+}
 
 /* ---------- Container ---------- */
 .container {
@@ -87,30 +103,42 @@ a:hover { opacity: 0.8; }
   width: 100%;
   z-index: 1000;
   background: transparent;
-  transition: background var(--transition), box-shadow var(--transition);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
 #main-header.scrolled {
   background: rgba(61, 58, 65, 0.96);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
+/* Header-inner: più alto quando non scrolled (top of page) */
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--nav-height);
+  height: 110px;
+  transition: height 0.4s ease;
 }
 
-/* Logo — mostriamo il logo originale a colori su tutti gli sfondi;
-   l'overlay scuro dell'hero garantisce già un buon contrasto */
+#main-header.scrolled .header-inner {
+  height: var(--nav-height); /* 80px — torna compatto */
+}
+
+/* Logo — si rimpicciolisce al scroll */
 .logo-link img {
-  height: 56px;
+  height: 80px;
   width: auto;
   object-fit: contain;
-  transition: opacity var(--transition);
+  transition: height 0.4s ease, opacity 0.3s ease;
 }
-.logo-link:hover img { opacity: 0.85; }
+
+#main-header.scrolled .logo-link img {
+  height: 52px;
+}
+
+.logo-link:hover img {
+  opacity: 0.85;
+}
 
 /* Desktop nav */
 .nav-links {
@@ -123,14 +151,21 @@ a:hover { opacity: 0.8; }
 .nav-links a {
   color: var(--color-cream);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 1rem; /* più grande quando non scrolled */
   letter-spacing: 2px;
   text-transform: uppercase;
   text-decoration: none;
-  transition: color var(--transition);
+  transition: color var(--transition), font-size 0.4s ease;
 }
+
+#main-header.scrolled .nav-links a {
+  font-size: 0.82rem; /* compatto al scroll */
+}
+
 .nav-links a:hover,
-.nav-links a.active { color: var(--color-wine); }
+.nav-links a.active {
+  color: var(--color-wine);
+}
 
 /* Social icons in nav */
 .nav-links .social-icon img {
@@ -140,7 +175,10 @@ a:hover { opacity: 0.8; }
   transition: filter var(--transition);
   vertical-align: middle;
 }
-.nav-links .social-icon:hover img { filter: brightness(0) invert(0) sepia(1) hue-rotate(300deg) saturate(3); }
+
+.nav-links .social-icon:hover img {
+  filter: brightness(0) invert(0) sepia(1) hue-rotate(300deg) saturate(3);
+}
 
 /* Hamburger */
 .hamburger {
@@ -154,6 +192,7 @@ a:hover { opacity: 0.8; }
   align-items: center;
   justify-content: center;
 }
+
 .hamburger span {
   display: block;
   width: 26px;
@@ -162,9 +201,18 @@ a:hover { opacity: 0.8; }
   border-radius: 2px;
   transition: transform var(--transition), opacity var(--transition);
 }
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
 /* Mobile menu */
 .mobile-menu {
@@ -185,10 +233,12 @@ a:hover { opacity: 0.8; }
   pointer-events: none;
   transition: opacity var(--transition);
 }
+
 .mobile-menu.open {
   opacity: 1;
   pointer-events: all;
 }
+
 .mobile-menu a {
   color: var(--color-cream);
   font-weight: 700;
@@ -198,7 +248,10 @@ a:hover { opacity: 0.8; }
   text-decoration: none;
   transition: color var(--transition);
 }
-.mobile-menu a:hover { color: var(--color-wine); }
+
+.mobile-menu a:hover {
+  color: var(--color-wine);
+}
 
 /* Mobile social */
 .mobile-menu .social-icon img {
@@ -209,8 +262,13 @@ a:hover { opacity: 0.8; }
 
 /* ---------- Tablet: show desktop nav ---------- */
 @media (min-width: 768px) {
-  .nav-links { display: flex; }
-  .hamburger { display: none; }
+  .nav-links {
+    display: flex;
+  }
+
+  .hamburger {
+    display: none;
+  }
 }
 
 /* ============================================================
@@ -225,7 +283,8 @@ a:hover { opacity: 0.8; }
   background-image: url('../img/enoteca-e-degustazioni-a-fucecchio.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* parallax feel */
+  background-attachment: fixed;
+  /* parallax feel */
 }
 
 /* Dark overlay */
@@ -250,10 +309,13 @@ a:hover { opacity: 0.8; }
   color: var(--color-cream);
   letter-spacing: 1px;
   line-height: 1.2;
-  text-shadow: 0.08em 0.08em 0.08em rgba(0,0,0,0.4);
+  text-shadow: 0.08em 0.08em 0.08em rgba(0, 0, 0, 0.4);
   margin-bottom: 0.5rem;
 }
-.hero-content h1 strong { font-weight: 700; }
+
+.hero-content h1 strong {
+  font-weight: 700;
+}
 
 /* ---- hero-divider: stretta e centrata, coerente con le wave ---- */
 .hero-divider {
@@ -302,18 +364,37 @@ a:hover { opacity: 0.8; }
   height: 10px;
   border-radius: 25%;
   background-color: #fff;
-  animation: scroll-anim 2.2s cubic-bezier(.15,.41,.69,.94) infinite;
+  animation: scroll-anim 2.2s cubic-bezier(.15, .41, .69, .94) infinite;
 }
 
 @keyframes scroll-anim {
-  0%   { opacity: 0; }
-  10%  { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(15px); opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
 }
 
 /* Mobile: disable fixed bg (perf + iOS compat) */
 @media (max-width: 767px) {
-  #hero { background-attachment: scroll; }
+  #hero {
+    background-attachment: scroll;
+  }
+}
+
+/* h1 hero più grande su mobile — già definito sopra, qui aggiungiamo h2 */
+@media (max-width: 767px) {
+  .hero-content h2 {
+    font-size: clamp(1.25rem, 4.5vw, 1.65rem);
+  }
 }
 
 /* ============================================================
@@ -324,11 +405,21 @@ a:hover { opacity: 0.8; }
 }
 
 .section-title {
-  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 700;
   color: var(--color-dark);
   margin-bottom: 1.5rem;
   text-align: center;
+}
+
+/* Titoli sezione più grandi su mobile */
+@media (max-width: 767px) {
+  .enoteca-title,
+  .enologo-title,
+  .contattami-title,
+  .section-title {
+    font-size: clamp(2.1rem, 8vw, 2.6rem);
+  }
 }
 
 .wave-divider {
@@ -341,7 +432,8 @@ a:hover { opacity: 0.8; }
    ============================================================ */
 #enoteca {
   background-color: var(--color-bg-enoteca);
-  padding-top: 0; /* wave sits at top */
+  padding-top: 0;
+  /* wave sits at top */
 }
 
 /* Wave decorativa: stretta e centrata, stessa logica del hero-divider */
@@ -349,7 +441,6 @@ a:hover { opacity: 0.8; }
 .contattami-wave {
   display: block;
   width: 60%;
-  max-width: 320px;
   margin-inline: auto;
 }
 
@@ -360,7 +451,8 @@ a:hover { opacity: 0.8; }
 }
 
 .enoteca-inner {
-  padding: 2rem 1.25rem 4rem; /* padding laterale incluso su mobile */
+  padding: 2rem 1.25rem 4rem;
+  /* padding laterale incluso su mobile */
 }
 
 .enoteca-title {
@@ -390,7 +482,10 @@ a:hover { opacity: 0.8; }
 }
 
 @media (min-width: 768px) {
-  .enoteca-photo { display: none; }
+  .enoteca-photo {
+    display: none;
+  }
+
   .enoteca-two-col {
     grid-template-columns: 2fr 3fr;
     gap: 3rem;
@@ -403,7 +498,10 @@ a:hover { opacity: 0.8; }
   line-height: 1.7;
   font-size: 1rem;
 }
-.enoteca-text p:last-child { margin-bottom: 0; }
+
+.enoteca-text p:last-child {
+  margin-bottom: 0;
+}
 
 /* ============================================================
    ENOLOGO SECTION
@@ -448,7 +546,10 @@ a:hover { opacity: 0.8; }
   line-height: 1.7;
   font-size: 1rem;
 }
-.enologo-text p:last-child { margin-bottom: 0; }
+
+.enologo-text p:last-child {
+  margin-bottom: 0;
+}
 
 /* ============================================================
    CONTATTAMI / CTA SECTION
@@ -477,8 +578,10 @@ a:hover { opacity: 0.8; }
 .contattami-wave {
   position: relative;
   z-index: 1;
-  margin-top: 3.5rem; /* padding visivo sopra la wave nella sezione contatti */
+  margin-top: 3.5rem;
+  /* padding visivo sopra la wave nella sezione contatti */
   margin-bottom: 0;
+  padding-top: 2rem;
 }
 
 .contattami-inner {
@@ -489,7 +592,9 @@ a:hover { opacity: 0.8; }
 }
 
 @media (max-width: 767px) {
-  #contattami { background-attachment: scroll; }
+  #contattami {
+    background-attachment: scroll;
+  }
 }
 
 /* Testo bianco su sfondo scuro */
@@ -499,9 +604,12 @@ a:hover { opacity: 0.8; }
   color: #fff;
   margin-bottom: 2rem;
   text-align: center;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
-.contattami-title strong { font-weight: 700; }
+
+.contattami-title strong {
+  font-weight: 700;
+}
 
 /* CTA Button */
 .btn-cta {
@@ -520,6 +628,7 @@ a:hover { opacity: 0.8; }
   cursor: pointer;
   transition: background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
+
 .btn-cta:hover {
   background: #7a0e38;
   border-color: #7a0e38;
@@ -554,7 +663,9 @@ a:hover { opacity: 0.8; }
 }
 
 @media (min-width: 900px) {
-  .footer-top { grid-template-columns: repeat(3, 1fr); }
+  .footer-top {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* Footer logo */
@@ -568,7 +679,9 @@ a:hover { opacity: 0.8; }
 }
 
 @media (min-width: 640px) {
-  .footer-logo img { margin-inline: 0; }
+  .footer-logo img {
+    margin-inline: 0;
+  }
 }
 
 /* Footer info */
@@ -593,31 +706,42 @@ a:hover { opacity: 0.8; }
   color: var(--color-cream);
   transition: color var(--transition);
 }
-.footer-info a:hover { color: #fff; opacity: 1; }
+
+.footer-info a:hover {
+  color: #fff;
+  opacity: 1;
+}
 
 .footer-social {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
-  justify-content: center; /* Centro su mobile */
+  justify-content: center;
+  /* Centro su mobile */
 }
 
 @media (min-width: 640px) {
-  .footer-social { justify-content: flex-start; }
+  .footer-social {
+    justify-content: flex-start;
+  }
 }
+
 .footer-social a img {
   width: 36px;
   height: 36px;
   transition: transform var(--transition), filter var(--transition);
   filter: brightness(0) invert(1);
 }
+
 .footer-social a:hover img {
   transform: scale(1.15);
   filter: brightness(0) invert(1) sepia(0.3);
 }
 
 /* Footer hours */
-.footer-hours strong { color: var(--color-cream); }
+.footer-hours strong {
+  color: var(--color-cream);
+}
 
 /* Footer bottom bar */
 .footer-bottom {
@@ -646,7 +770,11 @@ a:hover { opacity: 0.8; }
   color: rgba(245, 224, 204, 0.6);
   transition: color var(--transition);
 }
-.footer-bottom a:hover { color: var(--color-cream); opacity: 1; }
+
+.footer-bottom a:hover {
+  color: var(--color-cream);
+  opacity: 1;
+}
 
 /* ============================================================
    ANIMATIONS (intersection observer)
@@ -656,11 +784,17 @@ a:hover { opacity: 0.8; }
   transform: translateY(24px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
+
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* stagger for children */
-.fade-in:nth-child(2) { transition-delay: 0.15s; }
-.fade-in:nth-child(3) { transition-delay: 0.3s; }
+.fade-in:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.fade-in:nth-child(3) {
+  transition-delay: 0.3s;
+}
